@@ -210,7 +210,7 @@ function WeaknessCard(props) {
                         }}>
                                 <Typography variant="weaknessDescription">
                                     <b>Written claim: </b>
-                                    {claim}
+                                    {weakness}
                                 </Typography>
                             </Box> : <Box sx={{
                             height: "100%",
@@ -251,6 +251,7 @@ function WeaknessCard(props) {
                                     sx={{
                                         width: "100%",
                                     }}
+                                    value={weakness}
                                     onChange={(event) => {
                                         setWeaknessDesc(event.target.value);
                                     }}
