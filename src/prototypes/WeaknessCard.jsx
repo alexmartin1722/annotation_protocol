@@ -217,20 +217,6 @@ function WeaknessCard(props) {
                             overflow: "auto",
                             paddingTop: "20px",
                         }}>
-                            {/* <TextField
-                                id="outlined-textarea"
-                                label="Weakness"
-                                placeholder="Describe the weakness"
-                                multiline
-                                variant="outlined"
-                                sx={{
-                                    width: "100%",
-                                }}
-                                value={weakness}
-                                onChange={(event) => {
-                                    setWeaknessDesc(event.target.value);
-                                }}
-                            /> */}
                             <Box sx={{
                                 width: "100%",
                                 paddingRight: "20px",
@@ -256,17 +242,6 @@ function WeaknessCard(props) {
                                         setWeaknessDesc(event.target.value);
                                     }}
                                 />
-                                {/* <Slider
-                                    aria-label="Weakness Type"
-                                    defaultValue={1}
-                                    step={1}
-                                    marks={markers}
-                                    min={1}
-                                    max={5}
-                                    onChange={(event, value) => {
-                                        setWeaknessDesc(event.target.value);
-                                    }}
-                                /> */}
                             </Box>
                         </Box>}
                     </Box>

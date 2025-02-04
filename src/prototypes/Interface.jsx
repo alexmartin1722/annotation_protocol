@@ -16,9 +16,12 @@ import { parseCsvFromPublic } from '../components/utils';
 import ReviewerViewer from './ReviewViewer';
 import AddMore from './AddMore';
 import WeaknessCard from './WeaknessCard';
+import LeadViewer from './LeadViewer';
+import WikiViewer from './WikiViewer';
 
 
 function Interface(props) {
+
 
     const {
         theme,
@@ -47,12 +50,14 @@ function Interface(props) {
                             height: "95vh",
                             overflow: "auto",
                         }}>
-                            <ReviewerViewer payload={payload} hoverWeakness={hoverWeakness} theme={theme} focusIndex={focusIndex}
+                            {/* <ReviewerViewer payload={payload} hoverWeakness={hoverWeakness} theme={theme} focusIndex={focusIndex}
                                 backgroundColors={backgroundColors}
                                 selections={selections}
                                 setSelections={setSelections}
-                            />
-                            <AbstractViewer payload={payload} />
+                            /> */}
+                            <LeadViewer payload={payload} />
+                            <WikiViewer payload={payload} />
+                            {/* <LeadViewer payload={payload} /> */}
                             <Box sx={{
                                 padding: "30px"
                             }}>

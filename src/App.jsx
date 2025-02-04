@@ -11,7 +11,7 @@ import Interface from './prototypes/Interface';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { lightPalette, darkPalette } from './components/themes';
 import { useMediaQuery } from '@mui/material';
-import { parseCsvFromPublic } from './components/utils';
+import { parseCsvFromPublic, loadJsonPayload } from './components/utils';
 
 
 const lightTheme = createTheme({
@@ -179,7 +179,7 @@ function App() {
     if (isPreview) {
       const fetchPayload = async () => {
         try {
-          const response = await parseCsvFromPublic("nlp_neurips2023_2024.csv");
+          const response = await parseCsvFromPublic("random_batch.csv");
           setPayloads(response);
         }
         catch (error) {
@@ -189,8 +189,13 @@ function App() {
       fetchPayload();
     } else {
       //using the content from an div element with id="payload-read"
+      // TODO: What does this line do? 
+      // setPayloads(
+      //   [JSON.parse(document.getElementById("payload-read").textContent)]
+      // );
+
       setPayloads(
-        [JSON.parse(document.getElementById("payload-read").textContent)]
+        [loadJsonPayload(document.getElementById("payload-read").textContent)]
       );
     }
   }, [isPreview]);

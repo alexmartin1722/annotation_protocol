@@ -12,7 +12,7 @@ function AbstractViewer(props) {
     // Extract title and abstract using regex
     // The text looks like Title: xxx Abstract: xxx
 
-    let title_regex = /Title: (.*)\n/;
+    let title_regex = /XYZ_Wiki_Title: (.*)\n/;
     let abstract_regex = /Abstract: (.*)/s;
 
     let title = payload.meta.title.match(title_regex)[1];
@@ -25,9 +25,9 @@ function AbstractViewer(props) {
     }}>
         <Typography variant="h4">
             {title}&nbsp;
-            <Button variant="contained" color="primary"
+            {/* <Button variant="contained" color="primary"
                 onClick={() => window.open("https://"+payload.pdf, "_blank")}
-            >pdf</Button>
+            >pdf</Button> */}
         </Typography>
         <br />
         {/* <TextBlock prefix="Abstract: " text={abstract} /> */}
