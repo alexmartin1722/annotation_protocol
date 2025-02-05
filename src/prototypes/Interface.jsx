@@ -38,6 +38,15 @@ function Interface(props) {
     useEffect(() => {
     }, [payload]);
 
+    const prePopulateWeakness = () => {
+        const dummyClaims = ["Claim 1", "claim2", "claime"]
+        setWeaknessDescs([...dummyClaims]);
+    }
+
+    useEffect(() => {
+        prePopulateWeakness();
+    }, [])
+
     return (
         <Box>
             <Box sx={{
