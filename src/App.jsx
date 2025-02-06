@@ -179,7 +179,7 @@ function App() {
     if (isPreview) {
       const fetchPayload = async () => {
         try {
-          const response = await parseCsvFromPublic("random_batch.csv");
+          const response = await parseCsvFromPublic("single_batch.csv");
           setPayloads(response);
         }
         catch (error) {

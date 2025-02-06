@@ -12,12 +12,15 @@ import { AppBar, Divider, Toolbar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { lightPalette, darkPalette } from '../components/themes';
 import { useMediaQuery } from '@mui/material';
-import { parseCsvFromPublic } from '../components/utils';
+import { parseCsvFromPublic, loadClaimsFromString } from '../components/utils';
 import ReviewerViewer from './ReviewViewer';
 import AddMore from './AddMore';
 import WeaknessCard from './WeaknessCard';
 import LeadViewer from './LeadViewer';
 import WikiViewer from './WikiViewer';
+import SentenceViewer from './SentenceViewer';
+
+
 
 
 function Interface(props) {
@@ -31,16 +34,38 @@ function Interface(props) {
     const [hoverWeakness, setHoverWeakness] = useState(-1);
     const [focusIndex, setFocusIndex] = useState(-1);
     const [weaknessDescs, setWeaknessDescs] = useState([]);
+    const [baseClaims, setBaseClaims] = useState([]);
     const [backgroundColors, setBackgroundColors] = useState([]);
     const [selections, setSelections] = useState([]);
     const [numAlreadyAdded, setNumAlreadyAdded] = useState(0);
 
+
     useEffect(() => {
     }, [payload]);
 
+
     const prePopulateWeakness = () => {
-        const dummyClaims = ["Claim 1", "claim2", "claime"]
-        setWeaknessDescs([...dummyClaims]);
+        console.log(payload);
+        const rawClaims = payload.Extracted_Claims
+
+        const claimPairs = loadClaimsFromString(rawClaims);
+        console.log(claimPairs);
+
+        const deconClaims = claimPairs.map((pair) => {
+            return pair.decontextualized;
+        });
+        // console.log(deconClaims);
+        setWeaknessDescs([...deconClaims]);
+
+        const baseCalims = claimPairs.map((pair) => {
+            return pair.subclaim;
+        });
+        setBaseClaims([...baseCalims]);
+
+
+
+        // console.log(typeof predClaims);
+        // setWeaknessDescs([...predClaims]);
     }
 
     useEffect(() => {
@@ -83,6 +108,13 @@ function Interface(props) {
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
+                        {/* add box below that includes the "Claim_Sentence" from the payload */}
+                        <Box sx={{
+                            padding: "30px",
+                        }}>
+                            <SentenceViewer payload={payload} />
+                        </Box>
+
                         <Box sx={{
                             display: "flex",
                             flexDirection: "row",
@@ -102,6 +134,7 @@ function Interface(props) {
                                             theme={theme}
                                             index={index}
                                             weakness={desc}
+                                            claim={baseClaims[index]}
                                             backgroundColor={backgroundColors[index]}
                                             removeColor={() => {
                                                 const newColors = [...backgroundColors];

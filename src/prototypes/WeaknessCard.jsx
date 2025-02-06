@@ -209,6 +209,9 @@ function WeaknessCard(props) {
                             paddingTop: "20px",
                         }}>
                                 <Typography variant="weaknessDescription">
+                                    <b>Base claim: </b>
+                                    {claim}
+                                    <br />
                                     <b>Written claim: </b>
                                     {weakness}
                                 </Typography>
@@ -227,6 +230,12 @@ function WeaknessCard(props) {
                                         fontWeight: "bold",
                                     }}>
                                         Claim {index + 1}
+                                    </Typography>
+                                    <br />
+                                    <Typography variant="weaknessDescription" sx={{
+                                        fontWeight: "bold",
+                                    }}>
+                                        {claim}
                                     </Typography>
                                 </Box>
                                 <TextField

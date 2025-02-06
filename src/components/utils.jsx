@@ -94,8 +94,51 @@ function loadJsonPayload(json_string) {
   }
 }
 
+const loadClaimsFromString = (claims) => {
+  // string is formatted [{'subclaim:'subclaim1', 'decontextualized':'claim1'}, ...]
+  try {
+      const rawClaims = JSON.parse(claims);
+      return rawClaims;
+  } catch (e) {
+      // load json manually 
+      const claimPairs = claims.split("'subclaim':");
+      console.log(claimPairs);
+      var claimSets = [];
+      for (var i = 1; i < claimPairs.length; i++) {
+          const claimPair = claimPairs[i];
+          // console.log(claimPair);
+          var subclaim = claimPair.split("'decontextualized':")[0];
+          // console.log(subclaim);
+          // remove any leading or trailing space from subclaim.
+          subclaim = subclaim.trim();
+          // remove ' and ', from subclaim
+          subclaim = subclaim.substring(1, subclaim.length - 3);
+          // console.log(subclaim);
+          var decontextualized = claimPair.split("'decontextualized':")[1];
+          // console.log(decontextualized);
+          // remove any leading or trailing space from decontextualized.
+          decontextualized = decontextualized.trim();
+          // remove ' and '}, {, from decontextualized
+          decontextualized = decontextualized.substring(1, decontextualized.length - 3);
+          // console.log(decontextualized);
+          // check if it ends with '}
+          if (decontextualized.endsWith("'}")) {
+              decontextualized = decontextualized.substring(0, decontextualized.length - 2);
+          }
+          // console.log("subclaim: ", subclaim);
+          // console.log("decontextualized: ", decontextualized);
+
+          claimSets.push({
+              subclaim: subclaim,
+              decontextualized: decontextualized,
+          });
+      }
+      return claimSets;
+  }
+}
+
 function applyProps(Fn, props) {
     return (e = {}) => <Fn {...e} {...props} />
 }
 
-export { applyProps, parseCsvFromPublic, loadJsonPayload };
+export { applyProps, parseCsvFromPublic, loadJsonPayload, loadClaimsFromString };
