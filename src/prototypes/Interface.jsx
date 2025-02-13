@@ -52,7 +52,7 @@ function Interface(props) {
         console.log(claimPairs);
 
         const deconClaims = claimPairs.map((pair) => {
-            return pair.decontextualized;
+            return pair.subclaim;
         });
         // console.log(deconClaims);
         setWeaknessDescs([...deconClaims]);
@@ -92,25 +92,12 @@ function Interface(props) {
                             <LeadViewer payload={payload} />
                             <WikiViewer payload={payload} />
                             {/* <LeadViewer payload={payload} /> */}
-                            <Box sx={{
-                                padding: "30px"
-                            }}>
-                                <Button type="submit" variant="contained" color="primary" sx={{
-                                    width: "100%",
-                                    borderRadius: "10px",
-                                }}>
-                                    <Typography variant="h5" sx={{
-                                    }}>
-                                        Submit
-                                    </Typography>
-                                </Button>
-                            </Box>
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         {/* add box below that includes the "Claim_Sentence" from the payload */}
                         <Box sx={{
-                            padding: "30px",
+                            padding: "0px",
                         }}>
                             <SentenceViewer payload={payload} />
                         </Box>
@@ -158,6 +145,19 @@ function Interface(props) {
                         </Box>
                     </Grid>
                 </Grid>
+            </Box>
+            <Box sx={{
+                padding: "30px"
+            }}>
+                <Button type="submit" variant="contained" color="primary" sx={{
+                    width: "100%",
+                    borderRadius: "10px",
+                }}>
+                    <Typography variant="h5" sx={{
+                    }}>
+                        Submit
+                    </Typography>
+                </Button>
             </Box>
             <AddMore
                 numAlreadyAdded={numAlreadyAdded}

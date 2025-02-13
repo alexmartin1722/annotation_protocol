@@ -18,7 +18,7 @@ function SentenceViewer(props) {
 
 
     let claimList = claims.map((claim, index) => {
-        return claim.decontextualized;
+        return claim.subclaim;
     });
     
 

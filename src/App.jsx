@@ -172,14 +172,14 @@ function App() {
   // uncomment this for debugging
   const [payloads, setPayloads] = useState([]);
   const [payload_index, setPayloadIndex] = useState(0);
-  const [isPreview, setIsPreview] = useState(true);
+  const [isPreview, setIsPreview] = useState(false);
 
   useEffect(() => {
     // console.log("is_preview", is_preview);
     if (isPreview) {
       const fetchPayload = async () => {
         try {
-          const response = await parseCsvFromPublic("single_batch.csv");
+          const response = await parseCsvFromPublic("random_en_test_batch.csv");
           setPayloads(response);
         }
         catch (error) {
